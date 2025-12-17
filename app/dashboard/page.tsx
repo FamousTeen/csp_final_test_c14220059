@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import AnnouncementsList from "@/components/dashboard/announcements-list";
 import LogoutButton from "@/components/dashboard/logout-button";
 import { createClient } from "@/utils/supabase/server";
-import { logoutAction } from "./actions";
+import { logoutAction } from "@/actions/auth";
 
 export default async function DashboardPage() {
   const supabase = await createClient();
@@ -29,9 +29,7 @@ export default async function DashboardPage() {
               Kelola identitas Anda dan pantau pengumuman terbaru perusahaan.
             </p>
           </div>
-          <form action={logoutAction}>
-            <LogoutButton />
-          </form>
+          <LogoutButton action={logoutAction} />
         </header>
 
         <section className="space-y-4 rounded-3xl border border-white/10 bg-white/5 p-6 shadow-2xl backdrop-blur">

@@ -63,3 +63,15 @@ export async function loginAction(
 
   redirect('/dashboard');
 }
+
+export async function logoutAction(): Promise<void> {
+  const supabase = await createClient();
+  const { error } = await supabase.auth.signOut();
+
+  if (error) {
+    console.error('Logout gagal:', error.message);
+    return;
+  }
+
+  redirect('/login');
+}

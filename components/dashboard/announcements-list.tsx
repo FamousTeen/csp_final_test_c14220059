@@ -6,6 +6,7 @@ export default async function AnnouncementsList() {
   const { data, error } = await supabase
     .from("announcements")
     .select("id, title, content, created_at")
+    .returns<AnnouncementRow[]>()
     .order("created_at", { ascending: false })
     .limit(10);
 
